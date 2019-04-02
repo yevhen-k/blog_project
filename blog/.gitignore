@@ -1,0 +1,15 @@
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+
+blog/__pycache__
+blog_project/__pycache__
