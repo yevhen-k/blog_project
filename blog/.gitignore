@@ -11,5 +11,5 @@ db.sqlite3
 !.vscode/extensions.json
 
 
-blog/__pycache__
-blog_project/__pycache__
+blog/__pycache__/
+blog_project/__pycache__/
