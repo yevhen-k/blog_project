@@ -6,3 +6,97 @@ $ python manage.py runserver
 $ python manage.py makemigrations
 $ python manage.py migrate
 $ python manage.py createsuperuser
+
+View SQL command to be run to create table in db
+$ python manage.py sqlmigrate blog 0001
+
+Run django in command line mode to manipulate objects
+$ python manage.py shell
+
+In [1]: from blog.models import Post
+
+In [2]: from django.contrib.auth.models import User
+
+In [3]: User.objects.all()
+Out[3]: <QuerySet [<User: yevhen>, <User: testuser>]>
+
+In [4]: User.objects.first()
+Out[4]: <User: yevhen>
+
+In [5]: User.objects.filter(username='testuser')
+Out[5]: <QuerySet [<User: testuser>]>
+
+In [6]: User.objects.filter(username='testuser').first()
+Out[6]: <User: testuser>
+
+In [7]: user = User.objects.filter(username='testuser').first()
+
+In [8]: user
+Out[8]: <User: testuser>
+
+In [9]: user.id
+Out[9]: 2
+
+In [10]: user.email
+Out[10]: ''
+
+In [11]: user.pk
+Out[11]: 2
+
+In [12]: user = User.objects.get(id=1)
+
+In [13]: user
+Out[13]: <User: yevhen>
+
+In [14]: Post.objects.all()
+Out[14]: <QuerySet []>
+
+In [15]: post_1 = Post(title='Blog 1', content='First Post is here!', author=user)
+
+In [16]: Post.objects.all()
+Out[16]: <QuerySet []>
+
+In [17]: post_1.save()
+
+In [18]: Post.objects.all()
+Out[18]: <QuerySet [<Post: Post object (1)>]>
+
+In [19]: exit()
+
+In [20]: post = Post.objects.first()
+
+In [21]: post.content
+Out[21]: 'First Post is here!'
+
+In [22]: post.date_posted
+Out[22]: datetime.datetime(2019, 4, 3, 7, 41, 53, 268974, tzinfo=<UTC>)
+
+In [23]: post.author
+Out[23]: <User: yevhen>
+
+In [24]: post.author.email
+Out[24]: 'yevhen.krasnokutsky@gmail.com'
+
+In [25]: Post.objects.filter(author_id=1)
+Out[25]: <QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
+
+In [26]: Post.objects.filter(author_id=2)
+Out[26]: <QuerySet []>
+
+In [27]: Post.objects.filter(author_id=1)
+Out[27]: <QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
+
+In [28]: user.post_set
+Out[28]: <django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager at 0x1e142093908>
+
+In [29]: user.post_set.all()
+Out[29]: <QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
+
+In [30]: user.post_set.create(title='Blog 3', content='Third Post Content')
+Out[30]: <Post: Blog 3>
+
+In [31]: Post.objects.all()
+Out[31]: <QuerySet [<Post: Blog 1>, <Post: Blog 2>, <Post: Blog 3>]>
+
+
+To add custom model to admin page use admin.py file.
