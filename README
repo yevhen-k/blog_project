@@ -75,7 +75,7 @@ In [23]: post.author
 Out[23]: <User: yevhen>
 
 In [24]: post.author.email
-Out[24]: 'yevhen.krasnokutsky@gmail.com'
+Out[24]: 'yevhen.k@gmail.com'
 
 In [25]: Post.objects.filter(author_id=1)
 Out[25]: <QuerySet [<Post: Blog 1>, <Post: Blog 2>]>
