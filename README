@@ -100,3 +100,9 @@ Out[31]: <QuerySet [<Post: Blog 1>, <Post: Blog 2>, <Post: Blog 3>]>
 
 
 To add custom model to admin page use admin.py file.
+
+$ pip install django-crispy-forms
+
+In settings add follows:
+CRISPY_TEMPLATE_PACK = 'booststrap4'
+INSTALLED_APPS = [...,'crispy_forms',...]
