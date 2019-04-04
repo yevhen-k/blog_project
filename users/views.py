@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -11,9 +12,15 @@ def register(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            messages.success(request, 'Account created for {}!'.format(username))
-            return redirect('blog-home')
+            # username = form.cleaned_data.get('username')
+            messages.success(request, 'Account has been created!')
+            # return redirect('blog-home')
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+
+@login_required(redirect_field_name='blog-home')
+def profile(request):
+    return render(request, 'users/profile.html')
