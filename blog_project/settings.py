@@ -130,3 +130,8 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 # Restricted routes redirect
 LOGIN_URL = 'login'
+
+# Path to images
+# MEDIA_ROOT -- full path to dir where django store uploaded files (in filesysten, not in database for performance resons)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

@@ -106,3 +106,43 @@ $ pip install django-crispy-forms
 In settings add follows:
 CRISPY_TEMPLATE_PACK = 'booststrap4'
 INSTALLED_APPS = [...,'crispy_forms',...]
+
+
+In [1]: from django.contrib.auth.models import User
+
+In [2]: user = User.objects.filter(username='yevhen').first()
+
+In [3]: user
+Out[3]: <User: yevhen>
+
+In [4]: user.profile
+Out[4]: <Profile: yevhen Profile>
+
+In [5]: user.profile.image
+Out[5]: <ImageFieldFile: profile_pics/bio_team.png>
+
+In [6]: user.profile.image.width
+Out[6]: 720
+
+In [7]: user.profile.image.height
+Out[7]: 504
+
+In [8]: user.profile.image.size
+Out[8]: 25276
+
+In [9]: user.profile.image.url
+Out[9]: 'profile_pics/bio_team.png'
+
+In [10]: test_user = User.objects.filter(username='testuser').first()
+
+In [11]: test_user.profile
+Out[11]: <Profile: testuser Profile>
+
+In [12]: test_user.profile.image
+Out[12]: <ImageFieldFile: default.jpg>
+
+In [13]: test_user.profile.image.size
+# ERROR!
+
+In [14]: test_user.profile.image.url
+Out[14]: 'default.jpg'
