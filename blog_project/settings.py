@@ -135,3 +135,20 @@ LOGIN_URL = 'login'
 # MEDIA_ROOT -- full path to dir where django store uploaded files (in filesysten, not in database for performance resons)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# configuring django for Gmail SMTP server.
+# https://medium.com/@_christopher/how-to-send-emails-with-python-django-through-google-smtp-server-for-free-22ea6ea0fb8e
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+# in windows
+# set EMAIL_HOST_USER=your@email.here
+# set EMAIL_HOST_PASSWORD=yourpasswordhere
+# in linux
+# To set variable only for current shell:
+# $ EMAIL_HOST_USER=your@email.here
+# To set it for current shell and all processes started from current shell:
+# $ export EMAIL_HOST_USER=your@email.here
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
