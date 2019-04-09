@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 # from django.http import HttpResponse
 from .models import Post
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -50,6 +51,7 @@ class PostListView(ListView):
     template_name = 'blog/home.html'
     context_object_name = 'posts'
     ordering = ['-date_posted'] # ordering asc with minus sign
+    paginate_by = 5 # paginations functionality
 
 
 
@@ -106,3 +108,18 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+
+class UserListView(ListView):
+    model = Post
+    # by default django looks for template at <app>/<model>_<viewtype>.html
+    # which is blog/post_list.html
+    # so we need to alter this behaviour
+    template_name = 'blog/user_posts.html'
+    context_object_name = 'posts'
+    paginate_by = 5 # paginations functionality
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
