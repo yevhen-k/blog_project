@@ -205,3 +205,10 @@ Out[13]: True
 
 In [14]: p1.next_page_number()
 Out[14]: 2
+
+
+On production server after all preparations run:
+$ python manage.py collectstatic
+
+And lastly run production server:
+$ python manage.py runserver 0.0.0.0:8000

@@ -25,7 +25,9 @@ SECRET_KEY = '%-5t(&9a=uq!4e)aokr#cml+ywngw((w)cnunzdyncowwf1lp&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# in production we should specify ip domain name here
+# ALLOWED_HOSTS = ['123.21.12.11', 'mysuperblog.io']
+ALLOWED_HOSTS = ['192.168.2.20']
 
 
 # Application definition
@@ -120,6 +122,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# in production
+#STATIC_ROOT = os.pass.join(BASE_DIR, 'static')
+
+# while development
 STATIC_URL = '/static/'
 
 # Crispy settings
